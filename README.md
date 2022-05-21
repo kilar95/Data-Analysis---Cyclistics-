@@ -14,7 +14,7 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore,
 my team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights,
 my team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives
-must approve my recommendations, so they must be backed up with compelling data insights and professional data
+must approve our recommendations, so they must be backed up with compelling data insights and professional data
 visualizations.
 
 ### Goal
@@ -61,6 +61,7 @@ Data includes monthly historical trip data from **January 2021** to **December 2
 
 The data is credible and free of bias, does not contain private information of the riders, is open-source, it comes from a reliable source and it's original.
 
+### Installing the packages 
 After making sure the data is appropriate for our purpose, I installed the required packages on Rstudio and uploaded the datasets as shown below:
 
 ```
@@ -73,7 +74,9 @@ library(ggplot2) # data visualization
 
 setwd("C://Users//ilari//Documents//COURSERA//R//case_study_1")
 getwd() # it displays the working directory
-
+```
+### Uploading the files
+```
 Jan_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202101-divvy-tripdata/202101-divvy-tripdata.csv")
 Feb_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202102-divvy-tripdata/202102-divvy-tripdata.csv")
 Mar_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202103-divvy-tripdata/202103-divvy-tripdata.csv")
@@ -88,7 +91,8 @@ Nov_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/
 Dec_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202112-divvy-tripdata/202112-divvy-tripdata.csv")
 ```
 
-Then, before combining the dataset into one single file, I checked the column consistency by ensuring that the columns of the datasets matched perfectly with each other. In order to do so I used the following code.
+### Checking column constistency
+Then, before combining the dataset into one single file, the column consistency was checked by ensuring that the columns of the datasets matched perfectly with each other.
 
 ```
 # making sure all the columns of the datasets match perfectly before combining the datasets into one single file
@@ -97,15 +101,22 @@ compare_df_cols_same(Jan_21, Feb_21, Mar_21, Apr_21, May_21, Jun_21, Jul_21, Aug
 ```
 [1] TRUE
 ```
-
-As the result of the function is TRUE I joined the datasets into 'all_trips_21'.
+### Joining data
+As the result of the function is TRUE the datasets were joined into 'all_trips_21'.
 
 ```
 # joining the datasets into one single file
 all_trips_21 <- bind_rows(Jan_21, Feb_21, Mar_21, Apr_21, May_21, Jun_21, Jul_21, Aug_21, Sep_21, Oct_21, Nov_21, Dec_21)
 ```
 
-
+### Inspecting data
+```
+summary(all_trips_21) # it returns a statistical summary of the data
+head(all_trips_21) # it displays the first 6 rows of the dataframe
+glimpse(all_trips_21) # returns a summary of each column in the dataframe
+colnames(all_trips_21) # lists out all column names
+skim_without_charts(all_trips_21) # checking the dataframe structure 
+```
 
 
 ## STEP 3: Process
