@@ -88,6 +88,25 @@ Nov_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/
 Dec_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202112-divvy-tripdata/202112-divvy-tripdata.csv")
 ```
 
+Then, before combining the dataset into one single file, I checked the column consistency by ensuring that the columns of the datasets matched perfectly with each other. In order to do so I used the following code.
+
+```
+# making sure all the columns of the datasets match perfectly before combining the datasets into one single file
+compare_df_cols_same(Jan_21, Feb_21, Mar_21, Apr_21, May_21, Jun_21, Jul_21, Aug_21, Sep_21, Oct_21, Nov_21, Dec_21)
+```
+```
+[1] TRUE
+```
+
+As the result of the function is TRUE I joined the datasets into 'all_trips_21'.
+
+```
+# joining the datasets into one single file
+all_trips_21 <- bind_rows(Jan_21, Feb_21, Mar_21, Apr_21, May_21, Jun_21, Jul_21, Aug_21, Sep_21, Oct_21, Nov_21, Dec_21)
+```
+
+
+
 
 ## STEP 3: Process
 
