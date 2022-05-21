@@ -2,7 +2,7 @@
 ###### Ilaria Bertoldi
 ###### April 2022
 
-## Case Study Introduction: How Does a Bike-Share Navigate Speedy Success?
+## Case Study: How Does a Bike-Share Navigate Speedy Success?
 
 This case study was completed as part of the Google Data Analytics Professional Certificate capstone unit.
 As described in the Google Sara Analytics Professional Certificate, this case study will follow the 6 steps of the Data analysis process: Ask, Prepare, Process, Analyse, Share and Act. 
@@ -57,13 +57,41 @@ The following files have been downloaded from Divvy Bike's trip data, available 
 Since Cyclistics is a fictional company, the 2021 data used for this project comes from Divvy, a bike-sharing company that operates in Chicago. 
 Furthemore, the data used has been made available by Motivate International Inc, under this [license](https://ride.divvybikes.com/data-license-agreement).
 
-Data includes monthly historical trip data from **January 2021** to **December 2021**, organized in csv files. Each csv files contains structured data with 13 colomuns and a variable number of rows.
+Data includes monthly historical trip data from **January 2021** to **December 2021**, organized in csv files. Each csv files contains structured data with 13 colomuns and a variable number of rows. It also complies with ROCCC standards.
 
 The data is credible and free of bias, does not contain private information of the riders, is open-source, it comes from a reliable source and it's original.
 
+After making sure the data is appropriate for our purpose, I installed the required packages on Rstudio and uploaded the datasets as shown below:
+
+```
+library(janitor) # for data cleaning
+library(skimr) # summary statistics about variables
+library(dplyr) # data manipulation 
+library(lubridate) # date and time manipulation
+library(tidyverse) # data analysis
+library(ggplot2) # data visualization
+
+setwd("C://Users//ilari//Documents//COURSERA//R//case_study_1")
+getwd() # it displays the working directory
+
+Jan_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202101-divvy-tripdata/202101-divvy-tripdata.csv")
+Feb_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202102-divvy-tripdata/202102-divvy-tripdata.csv")
+Mar_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202103-divvy-tripdata/202103-divvy-tripdata.csv")
+Apr_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202104-divvy-tripdata/202104-divvy-tripdata.csv")
+May_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202105-divvy-tripdata/202105-divvy-tripdata.csv")
+Jun_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202106-divvy-tripdata/202106-divvy-tripdata.csv")
+Jul_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202107-divvy-tripdata/202107-divvy-tripdata.csv")
+Aug_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202108-divvy-tripdata/202108-divvy-tripdata.csv")
+Sep_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202109-divvy-tripdata/202109-divvy-tripdata.csv")
+Oct_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202110-divvy-tripdata/202110-divvy-tripdata.csv")
+Nov_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202111-divvy-tripdata/202111-divvy-tripdata.csv")
+Dec_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202112-divvy-tripdata/202112-divvy-tripdata.csv")
+```
+
+
 ## STEP 3: Process
 
-
+As already mentioned, the software used for this analysis was RStudio. The following code and text chunks explain in detail all the steps taken during the process.
 
 
 
