@@ -37,7 +37,7 @@ The key tasks of this first step are the following:
 * Identify the business task: analysing the difference in  usage patterns of casual riders and annualm members with the aim to convert casual riders into annual members
 * Consider key stakeholders like the **director of marketing**, responsible for the development of campaigns and initiatives to promote the bike-sharing program, and the **Cyclistic's executive team**, which decides weather to approve the recommended marketing program.
 
-### STEP 2: Prepare
+## STEP 2: Prepare
 
 The following files have been downloaded from Divvy Bike's trip data, available at the following [link](https://divvy-tripdata.s3.amazonaws.com/index.html):
 
@@ -59,7 +59,9 @@ Furthemore, the data used has been made available by Motivate International Inc,
 
 Data includes monthly historical trip data from **January 2021** to **December 2021**, organized in csv files. Each csv files contains structured data with 13 colomuns and a variable number of rows.
 
-The data is credible and free of bias. It comes from a reliable source and it's original.
+The data is credible and free of bias, does not contain private information of the riders, is open-source, it comes from a reliable source and it's original.
+
+## STEP 3: Process
 
 
 
