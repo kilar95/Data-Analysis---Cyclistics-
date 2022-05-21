@@ -31,11 +31,15 @@ Three questions will guide the future marketing program:
 2. Why would casual riders buy Cyclistic annual memberships?
 3. How can Cyclistic use digital media to influence casual riders to become members?
 
-This case study focuses on the first question. 
+**This case study focuses on the first question.** 
 
-### Data preparation
+The key tasks of this first step are the following:
+* Identify the business task: analysing the difference in  usage patterns of casual riders and annualm members with the aim to convert casual riders into annual members
+* Consider key stakeholders like the **director of marketing**, responsible for the development of campaigns and initiatives to promote the bike-sharing program, and the **Cyclistic's executive team**, which decides weather to approve the recommended marketing program.
 
-I downloaded the following files from Divvy Bike's trip data, available at the following [link](https://divvy-tripdata.s3.amazonaws.com/index.html):
+### STEP 2: Prepare
+
+The following files have been downloaded from Divvy Bike's trip data, available at the following [link](https://divvy-tripdata.s3.amazonaws.com/index.html):
 
 * 202101-divvy-tripdata
 * 202102-divvy-tripdata
@@ -53,7 +57,9 @@ I downloaded the following files from Divvy Bike's trip data, available at the f
 Since Cyclistics is a fictional company, the 2021 data used for this project comes from Divvy, a bike-sharing company that operates in Chicago. 
 Furthemore, the data used has been made available by Motivate International Inc, under this [license](https://ride.divvybikes.com/data-license-agreement).
 
+Data includes monthly historical trip data from **January 2021** to **December 2021**, organized in csv files. Each csv files contains structured data with 13 colomuns and a variable number of rows.
 
+The data is credible and free of bias. It comes from a reliable source and it's original.
 
 
 
