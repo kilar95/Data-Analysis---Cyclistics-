@@ -1,37 +1,57 @@
-# Data-Analysis---Cyclistics-
+# Google Data Analytics Capstone Project
+###### Ilaria Bertoldi
+###### April 2022
 
-## Scenario
+## Case Study Introduction: How Does a Bike-Share Navigate Speedy Success?
 
-You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director
+This case study was completed as part of the Google Data Analytics Professional Certificate capstone unit.
+As described in the Google Sara Analytics Professional Certificate, this case study will follow the 6 steps of the Data analysis process: Ask, Prepare, Process, Analyse, Share and Act. 
+The aforementioned steps were all accomplished by using Rstudio. 
+
+### Scenario
+
+I am a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director
 of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore,
-your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights,
-your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives
-must approve your recommendations, so they must be backed up with compelling data insights and professional data
+my team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights,
+my team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives
+must approve my recommendations, so they must be backed up with compelling data insights and professional data
 visualizations.
 
-## Obiettivo
+### Goal
 
 Driving question: How do annual members and casual riders use Cyclistic bikes differently?
 
 Cyclistic Bike-Share wants to increase member subscriptions for their services because annual members are more profitable than casual riders. Therefore they would like to know how member and casual riders use Cyclistic services differently. The results from this analysis may be used to guide future marketing programs to increase member subscriptions.
 
-## Preparazione dei dati
+## STEP 1 : Ask
 
-Ho scaricato i seguenti file da Divvy Bike's trip data:
+Three questions will guide the future marketing program:
+
+1. How do annual members and casual riders use Cyclistic bikes differently?
+2. Why would casual riders buy Cyclistic annual memberships?
+3. How can Cyclistic use digital media to influence casual riders to become members?
+
+This case study focuses on the first question. 
+
+### Data preparation
+
+I downloaded the following files from Divvy Bike's trip data, available at the following [link](https://divvy-tripdata.s3.amazonaws.com/index.html):
 
 * 202101-divvy-tripdata
 * 202102-divvy-tripdata
 * 202103-divvy-tripdata
 * 202104-divvy-tripdata
 * 202105-divvy-tripdata
+* 202106-divvy-tripdata
+* 202107-divvy-tripdata
+* 202108-divvy-tripdata
+* 202109-divvy-tripdata
+* 202110-divvy-tripdata
 * 202111-divvy-tripdata
 * 202112-divvy-tripdata
 
-I dati comprendono dunque i periodi **gennaio-maggio 2021** e **novembre-dicembre 2021**. I mesi estivi sono infatti stati esclusi perchè i file ad essi associati risultavano troppo grandi per essere caricati su BigQuery Sandbox.
-
-Come prima cosa ho aperto i file scaricati come foglio di calcolo Excel. Essendo le dimensioni delle tabelle abbastanza estese, ho deciso di lavorare in SQL durante le prime fasi di preparazione e pulizia dei dati, per poi spostarmi su R per l'analisi e la visualizzazione dei risultati.
-
-Si rammenta che la compagnia di bike sharing Cyclistics è una compagnia fittizia. I dati utilizzati sono stati raccolti da Motivate International Inc, la compagnia di bike sharing Divvy che opera nella città di Chicago. L'autorizzazione per l'utilizzo del presente dataset pubblico può essere esaminata al seguente [link](https://ride.divvybikes.com/data-license-agreement).
+Since Cyclistics is a fictional company, the 2021 data used for this project comes from Divvy, a bike-sharing company that operates in Chicago. 
+Furthemore, the data used has been made available by Motivate International Inc, under this [license](https://ride.divvybikes.com/data-license-agreement).
 
 
 
