@@ -120,19 +120,19 @@ unique(all_trips_21$rideable_type) # to display all unique values of rideble_typ
 ```
 
 ### Notes 
-* there are 5595063 rows and 13 columns
-* there are no duplicates of ride_id, as the number of ride_id unique values corresponds to the number of total rows
-* the following columns have missing or empty values: start_station_name, start_station_id, end_station_name, end_station_id, end_lat, end_lng
-* there are 3 unique values of rideble_type: "classic_bike", "elctric_bike" and "docked_bike"
+* There are 5595063 rows and 13 columns
+* There are no duplicates of ride_id, as the number of ride_id unique values corresponds to the number of total rows
+* The following columns have missing or empty values: start_station_name, start_station_id, end_station_name, end_station_id, end_lat, end_lng
+* There are 3 unique values of rideble_type: "classic_bike", "elctric_bike" and "docked_bike"
 * 2 unique values of member_casual: "member" and "casual" 
 
 ### What can be done to improve the data
 * We could add some additional columns containing different types of information (such as the duration of each ride, the time of the day in which the ride took place, and three columns separating day, month and year) in order to provide more opportunities to aggregate the data. 
-* some columns could be renamed to make them more intuitive
+* Dome columns could be renamed choosing a more intuitive title
 
 ## STEP 3: Process
 
-As already mentioned, the software used for this analysis was RStudio. The following code and text chunks explain in detail all the steps taken during the process.
+### Adding columns
 
 
 
