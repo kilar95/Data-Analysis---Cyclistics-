@@ -116,6 +116,7 @@ head(all_trips_21) # it displays the first 6 rows of the dataframe
 glimpse(all_trips_21) # returns a summary of each column in the dataframe
 colnames(all_trips_21) # lists out all column names
 skim_without_charts(all_trips_21) # checking the dataframe structure 
+unique(all_trips_21$rideable_type) # to display all unique values of rideble_type
 ```
 
 ### Notes 
