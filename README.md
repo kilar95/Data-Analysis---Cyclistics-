@@ -39,6 +39,9 @@ The key tasks of this first step are the following:
 
 ## STEP 2: Prepare
 
+This step allows to identify and collect the data from its location and determine its integrity, credibility and accessibility.
+
+### Downloading data
 The following files have been downloaded from Divvy Bike's trip data, available at the following [link](https://divvy-tripdata.s3.amazonaws.com/index.html):
 
 * 202101-divvy-tripdata
@@ -62,6 +65,9 @@ Data includes monthly historical trip data from **January 2021** to **December 2
 The data is credible and free of bias, does not contain private information of the riders, is open-source, it comes from a reliable source and it's original.
 
 ### Installing the packages 
+
+Considering the size of the downloaded datasets, I decided to use RStudio as the working tool to complete the data analysis process.
+
 After making sure the data is appropriate for our purpose, I installed the required packages on Rstudio and uploaded the datasets as shown below:
 
 ```
@@ -128,12 +134,34 @@ unique(all_trips_21$rideable_type) # to display all unique values of rideble_typ
 
 ### What can be done to improve the data
 * We could add some additional columns containing different types of information (such as the duration of each ride, the time of the day in which the ride took place, and three columns separating day, month and year) in order to provide more opportunities to aggregate the data. 
-* Dome columns could be renamed choosing a more intuitive title
+* Some columns could be renamed to a more intuitive title
 
 ## STEP 3: Process
+This step includes data cleaning and data manipulation processes
 
-### Adding columns
+### Renaming columns
+```
+all_trips_21 <- rename(all_trips_21, "user_type" = "member_casual") # renaming columns
+```
 
+### Adding new columns 
+Let's add the "ride_length" column by calculating the ride duration
+
+```
+all_trips_21$ride_length <- difftime(all_trips_21$ended_at, all_trips_21$started_at) # adding ride_length column
+```
+
+And now the "day_of_week", "month" and "year" columns by calculating the day of the week, the day and the month in which each ride started
+
+```
+all_trips_21$date <- as.Date(all_trips_21$started_at)
+
+all_trips_21 <- all_trips_21 %>%
+  mutate(month=lubridate::month(all_trips_21$date),
+         day=lubridate::day(all_trips_21$date),
+         day_of_week=lubridate::wday(all_trips_21$date, label=TRUE, locale="English"))
+
+```
 
 
 
