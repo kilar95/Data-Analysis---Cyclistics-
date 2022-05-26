@@ -78,7 +78,7 @@ library(lubridate) # date and time manipulation
 library(tidyverse) # data analysis
 library(ggplot2) # data visualization
 
-setwd("C://Users//ilari//Documents//COURSERA//R//case_study_1")
+setwd("C:/Users/ilari/Documents/COURSERA/R/case_study_1")
 getwd() # it displays the working directory
 ```
 ### Uploading the files
@@ -133,36 +133,102 @@ unique(all_trips_21$rideable_type) # to display all unique values of rideble_typ
 * 2 unique values of member_casual: "member" and "casual" 
 
 ### What can be done to improve the data
+* The columns "started_at" and "ended_at", containing datetime values, should be converted from character class to POSIXtc class
 * We could add some additional columns containing different types of information (such as the duration of each ride, the time of the day in which the ride took place, and three columns separating day, month and year) in order to provide more opportunities to aggregate the data. 
 * Some columns could be renamed to a more intuitive title
 
 ## STEP 3: Process
-This step includes data cleaning and data manipulation processes
+This step includes data manipulation and data cleaning processes
 
-### Renaming columns
+### Data manipulation
+#### Renaming columns
+
 ```
 all_trips_21 <- rename(all_trips_21, "user_type" = "member_casual") # renaming columns
 ```
+#### Converting datetime values from character to POSIXtc
 
-### Adding new columns 
-Let's add the "ride_length" column by calculating the ride duration
+```
+all_trips_21$started_at <- as.POSIXct(all_trips_21$started_at, format = "%Y-%m-%d %H:%M:%S", tz = "EST") # converting values of "started_at" column
+all_trips_21$ended_at <- as.POSIXct(all_trips_21$ended_at, format = "%Y-%m-%d %H:%M:%S", tz = "EST") # converting values of "ended_at" column
+
+```
+
+#### Adding new columns 
+Let's add the **ride_length** column by calculating the ride duration (in seconds)
 
 ```
 all_trips_21$ride_length <- difftime(all_trips_21$ended_at, all_trips_21$started_at) # adding ride_length column
 ```
 
-And now the "day_of_week", "month" and "year" columns by calculating the day of the week, the day and the month in which each ride started
+And now the **day_of_week**, **day**, **month** and **hour** columns by calculating the day of the week, the day, the month and the hour in which each ride started
 
 ```
-all_trips_21$date <- as.Date(all_trips_21$started_at)
+all_trips_21$date <- as.Date(all_trips_21$started_at) # adding date column
 
 all_trips_21 <- all_trips_21 %>%
-  mutate(month=lubridate::month(all_trips_21$date),
-         day=lubridate::day(all_trips_21$date),
-         day_of_week=lubridate::wday(all_trips_21$date, label=TRUE, locale="English"))
+  mutate(month = lubridate::month(all_trips_21$date),
+         day = lubridate::day(all_trips_21$date),
+         day_of_week = lubridate::wday(all_trips_21$date, label=TRUE, locale="English"),
+         hour = lubridate::hour(all_trips_21$started_at)) #adding month, day, day_of_week and hour columns
 
 ```
 
+Lastly we'll add the the **time_of_day** column
 
+```
+ll_trips_21 <- all_trips_21 %>%       # adding hour column
+  mutate(time_of_day = case_when (
+    hour >= 5 & hour < 12 ~ "Morning",
+    hour >= 12 & hour < 18 ~ "Afternoon",
+    hour >= 18 & hour < 22 ~ "Evening",
+    hour < 5 | hour >= 22 ~ "Night" 
+  ))                                   
+```
+
+#### Inspecting data
+
+Let's inspect once again the dataframe
+
+```
+skim_without_charts(all_trips_21) # checking the dataframe structure 
+```
+
+#### Observations
+
+* The maximum value of **ride_length** equals to 3356649 seconds, which corresponds to 932.4 hours. This value is an oulier and then considered invalid.
+* The minimum value of **ride_length** is negative. Again, it is considered invalid.
+
+#### In order to run calculation on the data we should convert "ride_length" from difftime to numeric class
+
+```
+all_trips_21$ride_length <- as.numeric(all_trips_21$ride_length) # converting ride_length from difftime to numeric
+class(all_trips_21$ride_length) # checking if ride_length has successfully been converted to numeric
+```
+
+### Data cleaning
+We must now remove all data that is incorrect, invalid or inaccurate from our dataframe, such as:
+
+* rides with negative ride_length values
+* rides with ride_length less than 60 seconds, as the company's website states that they potentially result from false starts or from user trying to re-dock a bike to ensure it is secured. 
+* rides with ride_length greater that 24 hours
+* rides with NA in end_lat or end_lng, which are considered invalid since the rides were not ended properly
+
+#### Removing invalid rides
+```
+trips_21 <- all_trips_21 %>%
+  filter(!(ride_length < 60)) %>% # filtering rides with ride_length values greater than 60 seconds
+  filter(!(ride_length > 86400)) %>% # filtering rides with ride_length values less than 24h
+  filter (!(is.na(end_lat)) | !(is.na(end_lng))) # removing rides with NA values in end_lat or end_lng
+```
+#### Inspecting dataframe 
+
+
+
+
+
+
+
+## STEP 4 : Analysis
 
 
