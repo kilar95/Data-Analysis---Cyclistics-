@@ -166,11 +166,13 @@ And now the **day_of_week**, **day**, **month** and **hour** columns by calculat
 ```
 all_trips_21$date <- as.Date(all_trips_21$started_at) # adding date column
 
+#adding month, day, day_of_week and hour columns
+
 all_trips_21 <- all_trips_21 %>%
   mutate(month = lubridate::month(all_trips_21$date),
          day = lubridate::day(all_trips_21$date),
          day_of_week = lubridate::wday(all_trips_21$date, label=TRUE, locale="English"),
-         hour = lubridate::hour(all_trips_21$started_at)) #adding month, day, day_of_week and hour columns
+         hour = lubridate::hour(all_trips_21$started_at)) 
 
 ```
 
@@ -216,19 +218,72 @@ We must now remove all data that is incorrect, invalid or inaccurate from our da
 
 #### Removing invalid rides
 ```
-trips_21 <- all_trips_21 %>%
+trips_v2 <- all_trips_21 %>%
   filter(!(ride_length < 60)) %>% # filtering rides with ride_length values greater than 60 seconds
   filter(!(ride_length > 86400)) %>% # filtering rides with ride_length values less than 24h
   filter (!(is.na(end_lat)) | !(is.na(end_lng))) # removing rides with NA values in end_lat or end_lng
 ```
 #### Inspecting dataframe 
 
+```
+summary(trips_v2$ride_length) # checking the min and max value of ride_length
+
+which(is.na(trips_v2$end_lng)) # checking if there still are NA values in end_lng or end_lat 
+which(is.na(trips_v2$end_lat))
+```
+
+The results show that: 
+* the min value of **ride_length** is now 60 seconds, as expected;
+* the max value of **ride_length** is now 86391, or 23.99 hrs;
+* all rides with NA values in the ending coordinates have been removed.
 
 
+### Verifying Data Integrity
+The data is now clean, accurate, consistent and complete.
 
-
+* **Remove Duplicates**: Data does not have any duplicate values
+* **Check for Outliers** : Outliers have been removed
+* **Check for Missing Values**: Invalid data with missing values have been removed
+* **Check Data Accuracy**: After removing bad data, all the remaining data is within its speculated range and hence accurate
+* **Check Data Completeness** : All matrices are available to answer the Business Question
+* **Check Data Consistency**: All 12 months of data have consistent format and structure, thus making it easier to combine into 1 single dataset
+* **Check Data Relevance**: The dataset contains ridership data of past 12 months, thus the data is current and not outdated
+* **Check Data Formats**: The columns have been typecast correctly and have appropriate data formats
+* **Date-Time Format Consistency**: All throughout the dataset the date and time are in consistent format
+* **Column Names**: All the column names are clear and meaningful
+* **Overall sense of Data**: Given the knowledge of the business, the data makes sense
 
 
 ## STEP 4 : Analysis
+Statistical summary of data about ride_length
 
+```
+summary(trips_v2$ride_length)
+```
+```
+Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+     60     417     731    1181    1318   86391 
+```
 
+### Comparing ride_length data of casual riders and annual members 
+```
+# Descriptive analysis on ride_length (all figures in seconds)
+trips_v2 %>% 
+  group_by(user_type) %>% 
+  summarise(avg_ride_length = mean(ride_length), #straight average (total ride length / rides)
+            median_ride_length = median(ride_length), #midpoint number in the ascending array of ride lengths
+            max_ride_length = max(ride_length), #longest ride
+            min_ride_length = min(ride_length))  #shortest ride
+```
+
+Results:
+```
+ user_type avg_ride_length median_ride_length max_ride_length min_ride_length
+  <chr>               <dbl>              <dbl>           <dbl>           <dbl>
+1 casual              1625.                971           86391              60
+2 member               813.                586           86024              60
+```
+
+The average ride length of the casual rider is more than twice as long as the average ride duration of an annual member.  
+
+![Alt text](C:\Users\ilari\Documents\COURSERA\R\case_study_1\avg_RL.jpeg "Average ride_length plot")
