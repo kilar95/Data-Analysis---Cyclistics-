@@ -286,4 +286,6 @@ Results:
 
 The average ride length of the casual rider is more than twice as long as the average ride duration of an annual member.  
 
-![Alt text](C:\Users\ilari\Documents\COURSERA\R\case_study_1\avg_RL.jpeg)
+![Image](avg_RL.jpeg)
+
+
