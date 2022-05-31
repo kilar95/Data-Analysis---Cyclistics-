@@ -284,7 +284,7 @@ Results:
 2 member               813.                586           86024              60
 ```
 
-The average ride length of the casual rider is more than twice as long as the average ride duration of an annual member.  
+**The average ride length of the casual rider is more than twice as long as the average ride duration of an annual member.**  
 
 Visualizing data:
 
@@ -314,4 +314,6 @@ trips_v2 %>%
 
 <img src="https://user-images.githubusercontent.com/104167965/171154479-68bb4349-e128-4fef-aa89-4fdcc243be2b.png" width="600">
 
-
+* **total number of member rides is greater than the total number of casual rides
+* **docked bikes are used only by casual riders
+* **the most used type of bike is the classic bike, both for members and casual riders
