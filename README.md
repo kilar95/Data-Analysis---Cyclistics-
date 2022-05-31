@@ -286,6 +286,32 @@ Results:
 
 The average ride length of the casual rider is more than twice as long as the average ride duration of an annual member.  
 
-<img src="avg_rl.png" width="600">
+Visualizing data:
+
+```
+trips_v2 %>%
+  group_by(user_type) %>%
+  summarise(avg_RL = mean(ride_length)) %>% 
+  ggplot() + geom_col(mapping = aes(x = user_type, y = avg_RL, fill = user_type), width = 0.3) +
+  labs(title= "Average ride length", subtitle= "Comparison between members and casual users", x = "User type", y = "Average ride length") +
+  scale_fill_discrete(name = "User type:") # changing legend title
+```
+
+
+<img src="https://user-images.githubusercontent.com/104167965/171154790-9ff8070d-ac65-450b-aea2-923576404a17.png" width="600">
+
+
+### Analyze ridership data by type of bike and user type
+
+```
+trips_v2 %>% 
+  group_by(user_type, rideable_type) %>% 
+  summarise(number_of_rides = n()) %>% 
+  ggplot() + geom_col(mapping = aes(x = user_type, y = number_of_rides, fill = rideable_type), width = 0.3)+
+  labs(title = "Total number of rides by user type and type of bike", x = "User type", y = "Number of rides")+
+  scale_fill_discrete("Type of bike")
+```
+
+<img src="https://user-images.githubusercontent.com/104167965/171154479-68bb4349-e128-4fef-aa89-4fdcc243be2b.png" width="600">
 
 
