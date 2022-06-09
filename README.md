@@ -300,7 +300,7 @@ trips_v2 %>%
 
 <img src="https://user-images.githubusercontent.com/104167965/171154790-9ff8070d-ac65-450b-aea2-923576404a17.png" width="600">
 
-### Visualizing total number of rides and average ride length by day of week
+### Analyzing average ride length of annual and casual members by day of week and total number of rides by day of week
 
 ```
 trips_v2 %>%
@@ -330,21 +330,6 @@ Results:
 13 member    Fri                  443811   785.
 14 member    Sat                  430629   901.
 ```
-Making the plot about number of rides:
-```
-trips_v2 %>% 
-  group_by(user_type, day_of_week) %>% 
-  summarise(number_of_rides = n()) %>% 
-  ggplot(aes(x = day_of_week, y = number_of_rides, fill = user_type)) + geom_col(position = "dodge", width = 0.7) +
-  labs(title = "Number of rides for each user type by weekday", x = "Weekday", y = "Number of rides")
-```
-
-<img src="https://user-images.githubusercontent.com/104167965/172833589-b7826e93-5a82-4ae9-96e6-ac7026f2cf0c.png" width="600">
-
-* **the number of rides for casual members is higher during the weekend
-* **the number of rides for annual members is higher on weekdays 
-* **members rides are much more than casual rides on weekdays and less on weekends 
-
 Making the plot about average ride length
 ```
 trips_v2 %>%
@@ -356,6 +341,26 @@ trips_v2 %>%
 ```
 
 <img src = "https://user-images.githubusercontent.com/104167965/172907388-abb66fa2-b50c-48cc-a6bb-3ae464db726d.png" width="600">
+
+* **average ride length of casual riders reaches its highest point in the weekend**
+* **average ride length of annual members is fairly constant during all week
+* **Sunday is the day of week with longest average ride lenght for both user types
+
+Making the plot about number of rides:
+```
+trips_v2 %>% 
+  group_by(user_type, day_of_week) %>% 
+  summarise(number_of_rides = n()) %>% 
+  ggplot(aes(x = day_of_week, y = number_of_rides, fill = user_type)) + geom_col(position = "dodge", width = 0.7) +
+  labs(title = "Number of rides for each user type by weekday", x = "Weekday", y = "Number of rides")
+```
+
+<img src="https://user-images.githubusercontent.com/104167965/172833589-b7826e93-5a82-4ae9-96e6-ac7026f2cf0c.png" width="600">
+
+* **the number of rides for casual members is higher during the weekend**
+* **the number of rides for annual members is higher on weekdays**
+* **members rides are much more than casual rides on weekdays and less on weekends**
+
 
 ### Analyzing ridership data by type of bike and user type
 
@@ -370,9 +375,9 @@ trips_v2 %>%
 
 <img src="https://user-images.githubusercontent.com/104167965/171154479-68bb4349-e128-4fef-aa89-4fdcc243be2b.png" width="600">
 
-* **total number of member rides is greater than the total number of casual rides
-* **docked bikes are used only by casual riders
-* **the most used type of bike is the classic bike, both for members and casual riders
+* **total number of member rides is greater than the total number of casual rides**
+* **docked bikes are used only by casual riders**
+* **the most used type of bike is the classic bike, both for members and casual riders**
 
 ### Analyzing total number of monthly rides for each user_type
 
@@ -393,6 +398,10 @@ trips_v3 %>%
 ```
 
 <img src="https://user-images.githubusercontent.com/104167965/172854121-273b3ba7-7195-420b-b69d-ee8c4ad86ddc.png" width="600">
+
+* **the number of rides for casual riders is at its highest point during the summer, specifically in June, July and August**
+* **the number of rides for annual members is at its highest in July, August, September and October**
+* **both casual riders and annual members reach their lowest number of rides in December, January and February**
 
 
 
