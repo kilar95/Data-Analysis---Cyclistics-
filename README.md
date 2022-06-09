@@ -331,7 +331,7 @@ Results:
 13 member    Fri                  443811   785.
 14 member    Sat                  430629   901.
 ```
-Making the plot about average ride length
+Visualizing average ride length by weekday
 ```
 trips_v2 %>%
   group_by(user_type, day_of_week) %>%
@@ -347,7 +347,7 @@ trips_v2 %>%
 * **Average ride length of annual members is fairly constant during all week**
 * **Sunday is the day of week with longest average ride lenght for both user types**
 
-Making the plot about number of rides:
+Visualizing number of rides by weekday:
 ```
 trips_v2 %>% 
   group_by(user_type, day_of_week) %>% 
