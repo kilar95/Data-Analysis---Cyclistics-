@@ -404,5 +404,48 @@ trips_v3 %>%
 * **The number of rides for annual members is at its highest in July, August, September and October**
 * **Both casual riders and annual members reach their lowest number of rides in December, January and February**
 
+### Analyzing total number of rides by time of day
+```
+trips_v3 <- trips_v3 %>% 
+  mutate(time_of_day = factor(time_of_day, levels = c("Morning","Afternoon","Evening","Night")))
+trips_v3 %>% 
+  group_by(user_type, time_of_day) %>% 
+  summarise(number_of_rides = n()) %>% 
+  arrange(user_type)
+```
+Results:
+```
+# A tibble: 8 x 3
+# Groups:   user_type [2]
+  user_type time_of_day number_of_rides
+  <chr>     <fct>                 <int>
+1 casual    Morning              458648
+2 casual    Afternoon           1127257
+3 casual    Evening              596638
+4 casual    Night                307583
+5 member    Morning              836816
+6 member    Afternoon           1289517
+7 member    Evening              682416
+8 member    Night                204884
+```
+Visualizing:
+```
+trips_v3 %>% 
+  group_by(user_type, time_of_day) %>% 
+  summarise(number_of_rides = n()) %>% 
+  ggplot(aes(x = time_of_day, y = number_of_rides, group = user_type, color = user_type)) + 
+  geom_line(size = 1.3) + geom_point(size = 2.5)+
+  labs(title = "Number of rides for each user type by time of day", caption = "Morning: 5:00-12:00, Afternoon: 12:00-18:00, Evening: 18:00-22:00, Night: 22:00-5:00", x = "Time of day", y = "Number of rides")
+
+```
+<img src="https://user-images.githubusercontent.com/104167965/172930483-ad92e0e3-0d45-4f74-a6f2-8764e872c583.png" width="600">
+
+
+
+
+
+
+
+
 
 
