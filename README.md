@@ -300,36 +300,37 @@ trips_v2 %>%
 
 <img src="https://user-images.githubusercontent.com/104167965/171154790-9ff8070d-ac65-450b-aea2-923576404a17.png" width="600">
 
-### Visualizing total number of rides by day of week
+### Visualizing total number of rides and average ride length by day of week
 
 ```
 trips_v2 %>%
   group_by(user_type, day_of_week) %>% # groups by usertype and weekday
-  summarise(number_of_rides = n()) %>% # calculates the number of rides 
-  arrange(user_type, day_of_week) # sorts
+  summarise(number_of_rides = n(), avg_rl = mean(ride_length)) %>% # calculates the number of rides and the average duration
+  arrange(user_type, day_of_week) # sort
+
 ```
 Results:
 ```
-# A tibble: 14 x 3
+# A tibble: 14 x 4
 # Groups:   user_type [2]
-   user_type day_of_week number_of_rides
-   <chr>     <ord>                 <int>
- 1 casual    Sun                  514659
- 2 casual    Mon                  295305
- 3 casual    Tue                  265269
- 4 casual    Wed                  268456
- 5 casual    Thu                  275044
- 6 casual    Fri                  344830
- 7 casual    Sat                  526563
- 8 member    Sun                  390835
- 9 member    Mon                  392944
-10 member    Tue                  448162
-11 member    Wed                  462267
-12 member    Thu                  444985
-13 member    Fri                  443811
-14 member    Sat                  430629
+   user_type day_of_week number_of_rides avg_rl
+   <chr>     <ord>                 <int>  <dbl>
+ 1 casual    Sun                  514659  1851.
+ 2 casual    Mon                  295305  1693.
+ 3 casual    Tue                  265269  1505.
+ 4 casual    Wed                  268456  1434.
+ 5 casual    Thu                  275044  1400.
+ 6 casual    Fri                  344830  1482.
+ 7 casual    Sat                  526563  1737.
+ 8 member    Sun                  390835   931.
+ 9 member    Mon                  392944   797.
+10 member    Tue                  448162   768.
+11 member    Wed                  462267   764.
+12 member    Thu                  444985   764.
+13 member    Fri                  443811   785.
+14 member    Sat                  430629   901.
 ```
-Making the plot:
+Making the plot about number of rides:
 ```
 trips_v2 %>% 
   group_by(user_type, day_of_week) %>% 
@@ -343,6 +344,18 @@ trips_v2 %>%
 * **the number of rides for casual members is higher during the weekend
 * **the number of rides for annual members is higher on weekdays 
 * **members rides are much more than casual rides on weekdays and less on weekends 
+
+Making the plot about average ride length
+```
+trips_v2 %>%
+  group_by(user_type, day_of_week) %>%
+  summarise(avg_RL = mean(ride_length)) %>% 
+  ggplot() + geom_col(mapping = aes(x = day_of_week, y = avg_RL, fill = user_type),position = "dodge", width = 0.7) +
+  labs(title= "Average ride length by each day of week", subtitle= "Comparison between members and casual users", x = "Weekday", y = "Average ride length") +
+  scale_fill_discrete(name = "User type:")
+```
+
+<img src = "https://user-images.githubusercontent.com/104167965/172907388-abb66fa2-b50c-48cc-a6bb-3ae464db726d.png" width="600">
 
 ### Analyzing ridership data by type of bike and user type
 
@@ -380,5 +393,6 @@ trips_v3 %>%
 ```
 
 <img src="https://user-images.githubusercontent.com/104167965/172854121-273b3ba7-7195-420b-b69d-ee8c4ad86ddc.png" width="600">
+
 
 
