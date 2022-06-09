@@ -329,7 +329,7 @@ Results:
 13 member    Fri                  443811
 14 member    Sat                  430629
 ```
-Creating the plot:
+Making the plot:
 ```
 trips_v2 %>% 
   group_by(user_type, day_of_week) %>% 
@@ -344,7 +344,7 @@ trips_v2 %>%
 * **the number of rides for annual members is higher on weekdays 
 * **members rides are much more than casual rides on weekdays and less on weekends 
 
-### Analyze ridership data by type of bike and user type
+### Analyzing ridership data by type of bike and user type
 
 ```
 trips_v2 %>% 
@@ -360,3 +360,25 @@ trips_v2 %>%
 * **total number of member rides is greater than the total number of casual rides
 * **docked bikes are used only by casual riders
 * **the most used type of bike is the classic bike, both for members and casual riders
+
+### Analyzing total number of monthly rides for each user_type
+
+```
+# first, let's convert month numbers in "month" column into month names abbreviations
+trips_v3 <- trips_v2 %>%
+  mutate(month = month.abb[month]) 
+```
+```
+# then let's make the plot
+trips_v3 %>% 
+  group_by(user_type, month) %>% 
+  summarise(number_of_rides = n()) %>% 
+  ggplot(aes(x = month, y = number_of_rides, group = user_type, color = user_type)) + 
+  geom_line(size = 1.3) + geom_point(size = 2.5) + 
+  labs(title = "Number of monthly rides for each user type", x = "Month", y = "Number of rides") +
+  scale_x_discrete(limits = month.abb)
+```
+
+<img src="https://user-images.githubusercontent.com/104167965/172854121-273b3ba7-7195-420b-b69d-ee8c4ad86ddc.png" width="600">
+
+
