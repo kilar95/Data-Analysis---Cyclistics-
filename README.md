@@ -284,8 +284,6 @@ Results:
 2 member               813.                586           86024              60
 ```
 
-**The average ride length of the casual rider is more than twice as long as the average ride duration of an annual member.**  
-
 Visualizing data:
 
 ```
@@ -300,7 +298,10 @@ trips_v2 %>%
 
 <img src="https://user-images.githubusercontent.com/104167965/171154790-9ff8070d-ac65-450b-aea2-923576404a17.png" width="600">
 
-### Analyzing average ride length of annual and casual members by day of week and total number of rides by day of week
+
+* **The average ride length of the casual rider is more than twice as long as the average ride duration of an annual member.**  
+
+### Analyzing average ride length and total number of rides of annual and casual members by day of week
 
 ```
 trips_v2 %>%
@@ -343,8 +344,8 @@ trips_v2 %>%
 <img src = "https://user-images.githubusercontent.com/104167965/172907388-abb66fa2-b50c-48cc-a6bb-3ae464db726d.png" width="600">
 
 * **average ride length of casual riders reaches its highest point in the weekend**
-* **average ride length of annual members is fairly constant during all week
-* **Sunday is the day of week with longest average ride lenght for both user types
+* **average ride length of annual members is fairly constant during all week**
+* **Sunday is the day of week with longest average ride lenght for both user types**
 
 Making the plot about number of rides:
 ```
