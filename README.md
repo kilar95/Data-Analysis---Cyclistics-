@@ -300,6 +300,49 @@ trips_v2 %>%
 
 <img src="https://user-images.githubusercontent.com/104167965/171154790-9ff8070d-ac65-450b-aea2-923576404a17.png" width="600">
 
+### Visualizing total number of rides by day of week
+
+```
+trips_v2 %>%
+  group_by(user_type, day_of_week) %>% # groups by usertype and weekday
+  summarise(number_of_rides = n()) %>% # calculates the number of rides 
+  arrange(user_type, day_of_week) # sorts
+```
+Results:
+```
+# A tibble: 14 x 3
+# Groups:   user_type [2]
+   user_type day_of_week number_of_rides
+   <chr>     <ord>                 <int>
+ 1 casual    Sun                  514659
+ 2 casual    Mon                  295305
+ 3 casual    Tue                  265269
+ 4 casual    Wed                  268456
+ 5 casual    Thu                  275044
+ 6 casual    Fri                  344830
+ 7 casual    Sat                  526563
+ 8 member    Sun                  390835
+ 9 member    Mon                  392944
+10 member    Tue                  448162
+11 member    Wed                  462267
+12 member    Thu                  444985
+13 member    Fri                  443811
+14 member    Sat                  430629
+```
+Creating the plot:
+```
+trips_v2 %>% 
+  group_by(user_type, day_of_week) %>% 
+  summarise(number_of_rides = n()) %>% 
+  ggplot(aes(x = day_of_week, y = number_of_rides, fill = user_type)) + geom_col(position = "dodge", width = 0.7) +
+  labs(title = "Number of rides for each user type by weekday", x = "Weekday", y = "Number of rides")
+```
+
+<img src="https://user-images.githubusercontent.com/104167965/172833589-b7826e93-5a82-4ae9-96e6-ac7026f2cf0c.png" width="600">
+
+* **the number of rides for casual members is higher during the weekend
+* **the number of rides for annual members is higher on weekdays 
+* **members rides are much more than casual rides on weekdays and less on weekends 
 
 ### Analyze ridership data by type of bike and user type
 
