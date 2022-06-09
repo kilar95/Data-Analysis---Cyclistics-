@@ -358,7 +358,7 @@ trips_v2 %>%
 
 <img src="https://user-images.githubusercontent.com/104167965/172833589-b7826e93-5a82-4ae9-96e6-ac7026f2cf0c.png" width="700">
 
-* **The number of rides for casual members is higher during the weekend**
+* **The number of rides for casual riders is higher during the weekend**
 * **The number of rides for annual members is higher on weekdays**
 * **Members rides are much more than casual rides on weekdays and less on weekends**
 
