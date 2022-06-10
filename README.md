@@ -440,10 +440,153 @@ trips_v3 %>%
 ```
 <img src="https://user-images.githubusercontent.com/104167965/172930483-ad92e0e3-0d45-4f74-a6f2-8764e872c583.png" width="600">
 
+* **Total number of rides of both annual members and casual riders reaches its peak in the afternoon**
+* **On the contrary, as expected, night is the less busy time of the day for both user types**
+* **In the morning member's number of rides are much more than casual riders's number of rides**
+
+### Top starting and ending stations 
+
+Top 5 **starting stations** for annual members and casual riders:
+```
+members_start <- trips_v3 %>% 
+  filter(!(is.na(start_station_name) | start_station_name == "")) %>%
+  filter(user_type == "member") %>%
+  group_by(start_station_name) %>% 
+  summarise(number_of_rides =n()) %>% 
+  arrange(-number_of_rides) %>% 
+  top_n(5)
+
+casual_start <- trips_v3 %>% 
+       filter(!(is.na(start_station_name) | start_station_name == "")) %>%
+       filter(user_type == "casual") %>%
+       group_by(start_station_name) %>% 
+       summarise(number_of_rides =n()) %>% 
+       arrange(-number_of_rides) %>% 
+       top_n(5)
+```
+Results for annual members:
+```
+# A tibble: 5 x 2
+  start_station_name       number_of_rides
+  <chr>                              <int>
+1 Clark St & Elm St                  24368
+2 Wells St & Concord Ln              23398
+3 Kingsbury St & Kinzie St           23235
+4 Wells St & Elm St                  20740
+5 Dearborn St & Erie St              19265
+```
+Results for casual riders:
+```
+# A tibble: 5 x 2
+  start_station_name      number_of_rides
+  <chr>                             <int>
+1 Streeter Dr & Grand Ave           65445
+2 Millennium Park                   33077
+3 Michigan Ave & Oak St             29391
+4 Shedd Aquarium                    22918
+5 Theater on the Lake               21057
+```
+Visualizing:
+
+```
+members_start %>%
+  ggplot () + geom_col(aes(x = number_of_rides, y = reorder (start_station_name, number_of_rides), fill = number_of_rides)) +
+  labs(title = "Top 5 most popular starting stations for casual rides", x = "Start Station Name", y = "Number of rides")
+
+casual_start %>%
+  ggplot () + geom_col(aes(x = number_of_rides, y = reorder (start_station_name, number_of_rides), fill = number_of_rides)) +
+  labs(title = "Top 5 most popular starting stations for annual members", x = "Start Station Name", y = "Number of rides")
+```
+
+<img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width="700">
+
+<img src="https://user-images.githubusercontent.com/104167965/173118230-1b34720b-864f-4bda-8573-8f9fa69a0e28.png" width="700">
 
 
+Top 5 **ending** stations:
+```
+members_end <- trips_v3 %>% 
+  filter(!(is.na(end_station_name) | end_station_name == "")) %>%
+  filter(user_type == "member") %>%
+  group_by(end_station_name) %>% 
+  summarise(number_of_rides =n()) %>% 
+  arrange(-number_of_rides) %>% 
+  top_n(5)
+
+casual_end <- trips_v3 %>% 
+  filter(!(is.na(end_station_name) | end_station_name == "")) %>%
+  filter(user_type == "casual") %>%
+  group_by(end_station_name) %>% 
+  summarise(number_of_rides =n()) %>% 
+  arrange(-number_of_rides) %>% 
+  top_n(5)
+
+```
+Results for annual members:
+```
+# A tibble: 5 x 2
+  end_station_name         number_of_rides
+  <chr>                              <int>
+1 Clark St & Elm St                  24556
+2 Wells St & Concord Ln              24092
+3 Kingsbury St & Kinzie St           23335
+4 Wells St & Elm St                  21370
+5 Dearborn St & Erie St              19999
+```
+Results for casual riders:
+```
+# A tibble: 5 x 2
+  end_station_name        number_of_rides
+  <chr>                             <int>
+1 Streeter Dr & Grand Ave           67912
+2 Millennium Park                   34201
+3 Michigan Ave & Oak St             30873
+4 Theater on the Lake               22522
+5 Shedd Aquarium                    21302
+```
+Visualizing:
+```
+members_end %>%
+  ggplot () + geom_col(aes(x = number_of_rides, y = reorder (end_station_name, number_of_rides), fill = number_of_rides)) +
+  labs(title = "Top 5 most popular ending stations for casual rides", x = "End Station Name", y = "Number of rides")
+
+casual_end %>%
+  ggplot () + geom_col(aes(x = number_of_rides, y = reorder (end_station_name, number_of_rides), fill = number_of_rides)) +
+  labs(title = "Top 5 most popular ending stations for annual members", x = "End Station Name", y = "Number of rides")
+```
 
 
+<img src="https://user-images.githubusercontent.com/104167965/173118700-45b3db6e-fde8-411c-aab8-d79043a11929.png" width="700">
+
+<img src="https://user-images.githubusercontent.com/104167965/173118751-752e4442-a139-42fd-82ce-b14744f6f61e.png" width="700">
+
+## STEP 5 : Share
+Create a csv file that we will visualize in Tableau
+```
+write.csv(trips_v3, file = "trips_v3.csv")
+```
+Link to the Interactive Tableau Dashboard
+
+
+## STEP 6: Act
+
+### Conclusions
+The average ride length for casual rides is 30 minutes which is more than double of that of member rides - 13 minutes
+
+No. of casual rides are highest in June, July and August with its peak in July and lowest in December, January and February
+No. of member rides are highest in July, August and September with its peak in September and lowest in December, January and February
+Casual rides are highest on weekends- Saturday and Sunday with the highest average ride lengths
+Member rides are lowest on weekends
+Both casual and member rides peak in the afternoon time ie. 12PM to 5PM
+
+The top 5 ride starting and ending stations for casual users are- Streeter Dr & Grand Ave, Millennium Park, Michigan Ave & Oak St, Shedd Aquarium and Theater on the Lake
+
+### Recommendations
+To attract the maximum number of Casual riders, promotion with subscription offers shall be done during the months of June, July and August  
+
+Subscription booth shall be set up on the top 5 docking stations for Casual riders during afternoon time ie. 12PM-5PM on weekends to give away “Weekend discounts” to membership subscriptions, leveraging the heavy weekend traffic
+
+Marketing strategies should emphasize on “more number of trips and shorter trip lengths” for casual riders
 
 
 
