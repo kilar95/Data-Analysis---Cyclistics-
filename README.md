@@ -505,22 +505,6 @@ Results for casual riders:
 5 Theater on the Lake               21057
 ```
 
-Visualizing:
-```
-members_start %>%
-  ggplot () + geom_col(aes(x = number_of_rides, y = reorder (start_station_name, number_of_rides), fill = number_of_rides)) +
-  labs(title = "Top 5 most popular starting stations for casual rides", x = "Start Station Name", y = "Number of rides")
-
-casual_start %>%
-  ggplot () + geom_col(aes(x = number_of_rides, y = reorder (start_station_name, number_of_rides), fill = number_of_rides)) +
-  labs(title = "Top 5 most popular starting stations for annual members", x = "Start Station Name", y = "Number of rides")
-```
-
-<img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width="700">
-
-<img src="https://user-images.githubusercontent.com/104167965/173118230-1b34720b-864f-4bda-8573-8f9fa69a0e28.png" width="700">
-
-
 Top 5 **ending** stations:
 ```
 members_end <- trips_v3 %>% 
@@ -567,6 +551,14 @@ Results for casual riders:
 
 Visualizing:
 ```
+members_start %>%
+  ggplot () + geom_col(aes(x = number_of_rides, y = reorder (start_station_name, number_of_rides), fill = number_of_rides)) +
+  labs(title = "Top 5 most popular starting stations for casual rides", x = "Start Station Name", y = "Number of rides")
+
+casual_start %>%
+  ggplot () + geom_col(aes(x = number_of_rides, y = reorder (start_station_name, number_of_rides), fill = number_of_rides)) +
+  labs(title = "Top 5 most popular starting stations for annual members", x = "Start Station Name", y = "Number of rides")
+
 members_end %>%
   ggplot () + geom_col(aes(x = number_of_rides, y = reorder (end_station_name, number_of_rides), fill = number_of_rides)) +
   labs(title = "Top 5 most popular ending stations for casual rides", x = "End Station Name", y = "Number of rides")
@@ -575,6 +567,9 @@ casual_end %>%
   ggplot () + geom_col(aes(x = number_of_rides, y = reorder (end_station_name, number_of_rides), fill = number_of_rides)) +
   labs(title = "Top 5 most popular ending stations for annual members", x = "End Station Name", y = "Number of rides")
 ```
+
+<img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width="600"> <img src="https://user-images.githubusercontent.com/104167965/173118230-1b34720b-864f-4bda-8573-8f9fa69a0e28.png" width="600">
+
 
 <img src="https://user-images.githubusercontent.com/104167965/173118700-45b3db6e-fde8-411c-aab8-d79043a11929.png" width="700">
 
