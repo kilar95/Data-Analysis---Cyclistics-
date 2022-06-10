@@ -42,6 +42,7 @@ The key tasks of this first step are the following:
 This step allows to identify and collect the data from its location and determine its integrity, credibility and accessibility.
 
 ### Downloading data
+
 The following files have been downloaded from Divvy Bike's trip data, available at the following [link](https://divvy-tripdata.s3.amazonaws.com/index.html):
 
 * 202101-divvy-tripdata
@@ -82,6 +83,7 @@ setwd("C:/Users/ilari/Documents/COURSERA/R/case_study_1")
 getwd() # it displays the working directory
 ```
 ### Uploading the files
+
 ```
 Jan_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202101-divvy-tripdata/202101-divvy-tripdata.csv")
 Feb_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/202102-divvy-tripdata/202102-divvy-tripdata.csv")
@@ -98,6 +100,7 @@ Dec_21 <- read.csv("C:/Users/ilari/Documents/COURSERA/R/case_study_1/trips_2021/
 ```
 
 ### Checking column constistency
+
 Then, before combining the dataset into one single file, the column consistency was checked by ensuring that the columns of the datasets matched perfectly with each other.
 
 ```
@@ -108,6 +111,7 @@ compare_df_cols_same(Jan_21, Feb_21, Mar_21, Apr_21, May_21, Jun_21, Jul_21, Aug
 [1] TRUE
 ```
 ### Joining data
+
 As the result of the function is TRUE the datasets were joined into 'all_trips_21'.
 
 ```
@@ -116,6 +120,7 @@ all_trips_21 <- bind_rows(Jan_21, Feb_21, Mar_21, Apr_21, May_21, Jun_21, Jul_21
 ```
 
 ### Inspecting data
+
 ```
 summary(all_trips_21) # it returns a statistical summary of the data
 head(all_trips_21) # it displays the first 6 rows of the dataframe
@@ -125,7 +130,8 @@ skim_without_charts(all_trips_21) # checking the dataframe structure
 unique(all_trips_21$rideable_type) # to display all unique values of rideble_type
 ```
 
-### Notes 
+### Notes
+
 * There are 5595063 rows and 13 columns
 * There are no duplicates of ride_id, as the number of ride_id unique values corresponds to the number of total rows
 * The following columns have missing or empty values: start_station_name, start_station_id, end_station_name, end_station_id, end_lat, end_lng
@@ -133,11 +139,13 @@ unique(all_trips_21$rideable_type) # to display all unique values of rideble_typ
 * 2 unique values of member_casual: "member" and "casual" 
 
 ### What can be done to improve the data
+
 * The columns "started_at" and "ended_at", containing datetime values, should be converted from character class to POSIXtc class
 * We could add some additional columns containing different types of information (such as the duration of each ride, the time of the day in which the ride took place, and three columns separating day, month and year) in order to provide more opportunities to aggregate the data. 
 * Some columns could be renamed to a more intuitive title
 
 ## STEP 3: Process
+
 This step includes data manipulation and data cleaning processes
 
 ### Data manipulation
@@ -155,6 +163,7 @@ all_trips_21$ended_at <- as.POSIXct(all_trips_21$ended_at, format = "%Y-%m-%d %H
 ```
 
 #### Adding new columns 
+
 Let's add the **ride_length** column by calculating the ride duration (in seconds)
 
 ```
@@ -209,6 +218,7 @@ class(all_trips_21$ride_length) # checking if ride_length has successfully been 
 ```
 
 ### Data cleaning
+
 We must now remove all data that is incorrect, invalid or inaccurate from our dataframe, such as:
 
 * rides with negative ride_length values
@@ -217,6 +227,7 @@ We must now remove all data that is incorrect, invalid or inaccurate from our da
 * rides with NA in end_lat or end_lng, which are considered invalid since the rides were not ended properly
 
 #### Removing invalid rides
+
 ```
 trips_v2 <- all_trips_21 %>%
   filter(!(ride_length < 60)) %>% # filtering rides with ride_length values greater than 60 seconds
@@ -239,6 +250,7 @@ The results show that:
 
 
 ### Verifying Data Integrity
+
 The data is now clean, accurate, consistent and complete.
 
 * **Remove Duplicates**: Data does not have any duplicate values
@@ -255,6 +267,7 @@ The data is now clean, accurate, consistent and complete.
 
 
 ## STEP 4 : Analysis
+
 Statistical summary of data about ride_length
 
 ```
@@ -266,6 +279,7 @@ Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
 ```
 
 ### Comparing ride_length data of casual riders and annual members 
+
 ```
 # Descriptive analysis on ride_length (all figures in seconds)
 trips_v2 %>% 
@@ -285,7 +299,6 @@ Results:
 ```
 
 Visualizing data:
-
 ```
 trips_v2 %>%
   group_by(user_type) %>%
@@ -308,8 +321,8 @@ trips_v2 %>%
   group_by(user_type, day_of_week) %>% # groups by usertype and weekday
   summarise(number_of_rides = n(), avg_rl = mean(ride_length)) %>% # calculates the number of rides and the average duration
   arrange(user_type, day_of_week) # sort
-
 ```
+
 Results:
 ```
 # A tibble: 14 x 4
@@ -331,6 +344,7 @@ Results:
 13 member    Fri                  443811   785.
 14 member    Sat                  430629   901.
 ```
+
 Visualizing average ride length by weekday
 ```
 trips_v2 %>%
@@ -413,6 +427,7 @@ trips_v3 %>%
   summarise(number_of_rides = n()) %>% 
   arrange(user_type)
 ```
+
 Results:
 ```
 # A tibble: 8 x 3
@@ -428,6 +443,7 @@ Results:
 7 member    Evening              682416
 8 member    Night                204884
 ```
+
 Visualizing:
 ```
 trips_v3 %>% 
@@ -438,7 +454,7 @@ trips_v3 %>%
   labs(title = "Number of rides for each user type by time of day", caption = "Morning: 5:00-12:00, Afternoon: 12:00-18:00, Evening: 18:00-22:00, Night: 22:00-5:00", x = "Time of day", y = "Number of rides")
 
 ```
-<img src="https://user-images.githubusercontent.com/104167965/172930483-ad92e0e3-0d45-4f74-a6f2-8764e872c583.png" width="600">
+<img src="https://user-images.githubusercontent.com/104167965/172930483-ad92e0e3-0d45-4f74-a6f2-8764e872c583.png" width="700">
 
 * **Total number of rides of both annual members and casual riders reaches its peak in the afternoon**
 * **On the contrary, as expected, night is the less busy time of the day for both user types**
@@ -464,6 +480,7 @@ casual_start <- trips_v3 %>%
        arrange(-number_of_rides) %>% 
        top_n(5)
 ```
+
 Results for annual members:
 ```
 # A tibble: 5 x 2
@@ -475,6 +492,7 @@ Results for annual members:
 4 Wells St & Elm St                  20740
 5 Dearborn St & Erie St              19265
 ```
+
 Results for casual riders:
 ```
 # A tibble: 5 x 2
@@ -486,8 +504,8 @@ Results for casual riders:
 4 Shedd Aquarium                    22918
 5 Theater on the Lake               21057
 ```
-Visualizing:
 
+Visualizing:
 ```
 members_start %>%
   ggplot () + geom_col(aes(x = number_of_rides, y = reorder (start_station_name, number_of_rides), fill = number_of_rides)) +
@@ -522,6 +540,7 @@ casual_end <- trips_v3 %>%
   top_n(5)
 
 ```
+
 Results for annual members:
 ```
 # A tibble: 5 x 2
@@ -533,6 +552,7 @@ Results for annual members:
 4 Wells St & Elm St                  21370
 5 Dearborn St & Erie St              19999
 ```
+
 Results for casual riders:
 ```
 # A tibble: 5 x 2
@@ -544,6 +564,7 @@ Results for casual riders:
 4 Theater on the Lake               22522
 5 Shedd Aquarium                    21302
 ```
+
 Visualizing:
 ```
 members_end %>%
@@ -555,12 +576,14 @@ casual_end %>%
   labs(title = "Top 5 most popular ending stations for annual members", x = "End Station Name", y = "Number of rides")
 ```
 
-
 <img src="https://user-images.githubusercontent.com/104167965/173118700-45b3db6e-fde8-411c-aab8-d79043a11929.png" width="700">
+
 
 <img src="https://user-images.githubusercontent.com/104167965/173118751-752e4442-a139-42fd-82ce-b14744f6f61e.png" width="700">
 
+
 ## STEP 5 : Share
+
 Create a csv file that we will visualize in Tableau
 ```
 write.csv(trips_v3, file = "trips_v3.csv")
@@ -569,8 +592,8 @@ Link to the Interactive Tableau Dashboard
 
 
 ## STEP 6: Act
-
 ### Conclusions
+
 The average ride length for casual rides is 30 minutes which is more than double of that of member rides - 13 minutes
 
 No. of casual rides are highest in June, July and August with its peak in July and lowest in December, January and February
@@ -582,6 +605,7 @@ Both casual and member rides peak in the afternoon time ie. 12PM to 5PM
 The top 5 ride starting and ending stations for casual users are- Streeter Dr & Grand Ave, Millennium Park, Michigan Ave & Oak St, Shedd Aquarium and Theater on the Lake
 
 ### Recommendations
+
 To attract the maximum number of Casual riders, promotion with subscription offers shall be done during the months of June, July and August  
 
 Subscription booth shall be set up on the top 5 docking stations for Casual riders during afternoon time ie. 12PM-5PM on weekends to give away “Weekend discounts” to membership subscriptions, leveraging the heavy weekend traffic
