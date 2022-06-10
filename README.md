@@ -570,8 +570,8 @@ casual_end %>%
 
 <table>
   <tr>
-    <td><img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width=270 height=480></td>
-    <td><img src="https://user-images.githubusercontent.com/104167965/173118700-45b3db6e-fde8-411c-aab8-d79043a11929.png" width=270 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width=600></td>
+    <td><img src="https://user-images.githubusercontent.com/104167965/173118700-45b3db6e-fde8-411c-aab8-d79043a11929.png" width=600></td>
   </tr>
  </table>
  
