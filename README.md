@@ -568,11 +568,18 @@ casual_end %>%
   labs(title = "Top 5 most popular ending stations for annual members", x = "End Station Name", y = "Number of rides")
 ```
 
-<img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width="600"> <img src="https://user-images.githubusercontent.com/104167965/173118230-1b34720b-864f-4bda-8573-8f9fa69a0e28.png" width="600">
-
+<table>
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width=270 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/104167965/173118700-45b3db6e-fde8-411c-aab8-d79043a11929.png" width=270 height=480></td>
+  </tr>
+ </table>
+ 
+<img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width="700"> 
 
 <img src="https://user-images.githubusercontent.com/104167965/173118700-45b3db6e-fde8-411c-aab8-d79043a11929.png" width="700">
 
+<img src="https://user-images.githubusercontent.com/104167965/173118230-1b34720b-864f-4bda-8573-8f9fa69a0e28.png" width="700">
 
 <img src="https://user-images.githubusercontent.com/104167965/173118751-752e4442-a139-42fd-82ce-b14744f6f61e.png" width="700">
 
