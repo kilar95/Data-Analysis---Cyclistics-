@@ -5,7 +5,7 @@
 ## Case Study: How Does a Bike-Share Navigate Speedy Success?
 
 This case study was completed as part of the Google Data Analytics Professional Certificate capstone unit.
-As described in the Google Sara Analytics Professional Certificate, this case study will follow the 6 steps of the Data analysis process: Ask, Prepare, Process, Analyse, Share and Act. 
+As described in the Google Data Analytics Professional Certificate, this case study will follow the 6 steps of the Data analysis process: Ask, Prepare, Process, Analyse, Share and Act. 
 The aforementioned steps were all accomplished by using Rstudio. 
 
 ### Scenario
@@ -27,14 +27,14 @@ Cyclistic Bike-Share wants to increase member subscriptions for their services b
 
 Three questions will guide the future marketing program:
 
-1. How do annual members and casual riders use Cyclistic bikes differently?
+1. **How do annual members and casual riders use Cyclistic bikes differently?**
 2. Why would casual riders buy Cyclistic annual memberships?
 3. How can Cyclistic use digital media to influence casual riders to become members?
 
 **This case study focuses on the first question.** 
 
 The key tasks of this first step are the following:
-* Identify the business task: analysing the difference in  usage patterns of casual riders and annualm members with the aim to convert casual riders into annual members
+* Identify the business task: analysing the difference in  usage patterns of casual riders and annual members with the aim to convert casual riders into annual members
 * Consider key stakeholders like the **director of marketing**, responsible for the development of campaigns and initiatives to promote the bike-sharing program, and the **Cyclistic's executive team**, which decides weather to approve the recommended marketing program.
 
 ## STEP 2: Prepare
@@ -59,7 +59,7 @@ The following files have been downloaded from Divvy Bike's trip data, available 
 * 202112-divvy-tripdata
 
 Since Cyclistics is a fictional company, the 2021 data used for this project comes from Divvy, a bike-sharing company that operates in Chicago. 
-Furthemore, the data used has been made available by Motivate International Inc, under this [license](https://ride.divvybikes.com/data-license-agreement).
+The data used has been made available by Motivate International Inc, under this [license](https://ride.divvybikes.com/data-license-agreement).
 
 Data includes monthly historical trip data from **January 2021** to **December 2021**, organized in csv files. Each csv files contains structured data with 13 colomuns and a variable number of rows. It also complies with ROCCC standards.
 
@@ -68,7 +68,6 @@ The data is credible and free of bias, does not contain private information of t
 ### Installing the packages 
 
 Considering the size of the downloaded datasets, I decided to use RStudio as the working tool to complete the data analysis process.
-
 After making sure the data is appropriate for our purpose, I installed the required packages on Rstudio and uploaded the datasets as shown below:
 
 ```
@@ -112,7 +111,7 @@ compare_df_cols_same(Jan_21, Feb_21, Mar_21, Apr_21, May_21, Jun_21, Jul_21, Aug
 ```
 ### Joining data
 
-As the result of the function is TRUE the datasets were joined into 'all_trips_21'.
+As the result of the function is TRUE, the datasets were joined into 'all_trips_21'.
 
 ```
 # joining the datasets into one single file
@@ -140,9 +139,10 @@ unique(all_trips_21$rideable_type) # to display all unique values of rideble_typ
 
 ### What can be done to improve the data
 
+* Some columns could be renamed to a more intuitive title
 * The columns "started_at" and "ended_at", containing datetime values, should be converted from character class to POSIXtc class
 * We could add some additional columns containing different types of information (such as the duration of each ride, the time of the day in which the ride took place, and three columns separating day, month and year) in order to provide more opportunities to aggregate the data. 
-* Some columns could be renamed to a more intuitive title
+
 
 ## STEP 3: Process
 
@@ -207,7 +207,7 @@ skim_without_charts(all_trips_21) # checking the dataframe structure
 
 #### Observations
 
-* The maximum value of **ride_length** equals to 3356649 seconds, which corresponds to 932.4 hours. This value is an oulier and then considered invalid.
+* The maximum value of **ride_length** equals to 3356649 seconds, which corresponds to 932.4 hours. This value is an oulier and thus considered invalid.
 * The minimum value of **ride_length** is negative. Again, it is considered invalid.
 
 #### In order to run calculation on the data we should convert "ride_length" from difftime to numeric class
@@ -221,10 +221,10 @@ class(all_trips_21$ride_length) # checking if ride_length has successfully been 
 
 We must now remove all data that is incorrect, invalid or inaccurate from our dataframe, such as:
 
-* rides with negative ride_length values
-* rides with ride_length less than 60 seconds, as the company's website states that they potentially result from false starts or from user trying to re-dock a bike to ensure it is secured. 
-* rides with ride_length greater that 24 hours
-* rides with NA in end_lat or end_lng, which are considered invalid since the rides were not ended properly
+* rides with negative ride_length values;
+* rides with ride_length less than 60 seconds, as the company's website states that they potentially result from false starts or from user trying to re-dock a bike to ensure it is secured;
+* rides with ride_length greater that 24 hours;
+* rides with NA in end_lat or end_lng, which are considered invalid since the rides were not ended properly.
 
 #### Removing invalid rides
 
@@ -253,17 +253,17 @@ The results show that:
 
 The data is now clean, accurate, consistent and complete.
 
-* **Remove Duplicates**: Data does not have any duplicate values
-* **Check for Outliers** : Outliers have been removed
-* **Check for Missing Values**: Invalid data with missing values have been removed
-* **Check Data Accuracy**: After removing bad data, all the remaining data is within its speculated range and hence accurate
-* **Check Data Completeness** : All matrices are available to answer the Business Question
-* **Check Data Consistency**: All 12 months of data have consistent format and structure, thus making it easier to combine into 1 single dataset
-* **Check Data Relevance**: The dataset contains ridership data of past 12 months, thus the data is current and not outdated
-* **Check Data Formats**: The columns have been typecast correctly and have appropriate data formats
-* **Date-Time Format Consistency**: All throughout the dataset the date and time are in consistent format
-* **Column Names**: All the column names are clear and meaningful
-* **Overall sense of Data**: Given the knowledge of the business, the data makes sense
+* **Remove Duplicates**: data does not have any duplicate values
+* **Check for Outliers** : outliers have been removed
+* **Check for Missing Values**: invalid data with missing values have been removed
+* **Check Data Accuracy**: after removing bad data, all the remaining data is within its speculated range and hence accurate
+* **Check Data Completeness** : all matrices are available to answer the Business Question
+* **Check Data Consistency**: all 12 months of data have consistent format and structure, thus making it easier to combine into 1 single dataset
+* **Check Data Relevance**: the dataset contains ridership data of past 12 months, thus the data is current and not outdated
+* **Check Data Formats**: the columns have been typecast correctly and have appropriate data formats
+* **Date-Time Format Consistency**: all throughout the dataset the date and time are in consistent format
+* **Column Names**: all the column names are clear and meaningful
+* **Overall sense of Data**: given the knowledge of the business, the data makes sense
 
 
 ## STEP 4 : Analysis
@@ -570,19 +570,23 @@ casual_end %>%
 
 <table>
   <tr>
-    <td><img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width=600></td>
-    <td><img src="https://user-images.githubusercontent.com/104167965/173118700-45b3db6e-fde8-411c-aab8-d79043a11929.png" width=600></td>
+    <td><img src="https://user-images.githubusercontent.com/104167965/173118131-d261643c-0d90-4135-9b0c-218416a17328.png" width=500></td>
+    <td><img src="https://user-images.githubusercontent.com/104167965/173118700-45b3db6e-fde8-411c-aab8-d79043a11929.png" width=500></td>
   </tr>
  </table>
  
  
  <table>
   <tr>
-    <td><img src="https://user-images.githubusercontent.com/104167965/173118230-1b34720b-864f-4bda-8573-8f9fa69a0e28.png" width=600></td>
-    <td><img src="https://user-images.githubusercontent.com/104167965/173118751-752e4442-a139-42fd-82ce-b14744f6f61e.png" width=600></td>
+    <td><img src="https://user-images.githubusercontent.com/104167965/173118230-1b34720b-864f-4bda-8573-8f9fa69a0e28.png" width=500></td>
+    <td><img src="https://user-images.githubusercontent.com/104167965/173118751-752e4442-a139-42fd-82ce-b14744f6f61e.png" width=500></td>
   </tr>
  </table>
  
+
+*
+*
+
 
 ## STEP 5 : Share
 
