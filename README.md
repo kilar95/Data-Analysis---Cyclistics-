@@ -4,6 +4,9 @@
 
 ## Case Study: How Does a Bike-Share Navigate Speedy Success?
 
+![Immagine 2022-06-13 183046](https://user-images.githubusercontent.com/104167965/173401227-dbb336d6-6209-4427-b216-b35ef2d042a6.png)
+
+
 This case study was completed as part of the Google Data Analytics Professional Certificate capstone unit.
 As described in the Google Data Analytics Professional Certificate, this case study will follow the 6 steps of the Data analysis process: Ask, Prepare, Process, Analyse, Share and Act. 
 The aforementioned steps were all accomplished by using Rstudio. 
@@ -584,8 +587,8 @@ casual_end %>%
  </table>
  
 
-*
-*
+* The top 5 starting stations are also the top 5 ending stations for both casual riders and annual members
+* The number of casual rides started and finished in their top docking stations is significantly greater than the number of member rides started or finished from their top docking stations
 
 
 ## STEP 5 : Share
@@ -600,9 +603,12 @@ Link to the Interactive Tableau Dashboard
 ## STEP 6: Act
 ### Conclusions
 
-The average ride length for casual rides is 30 minutes which is more than double of that of member rides - 13 minutes
+**How do annual members and casual riders use Cyclistic bikes differently?**
 
-No. of casual rides are highest in June, July and August with its peak in July and lowest in December, January and February
+* The average ride length for casual rides is 27 minutes, while average ride length for annual member rides is 13 minutes
+* The average ride length of casual riders is at its highest in the weekend, while the average ride length of annual members is constant throughout the week
+* The number of casual rides is highest in the weekend, while the number of member rides is higher on weekdays
+* No. of casual rides are highest in June, July and August with its peak in July and lowest in December, January and February
 No. of member rides are highest in July, August and September with its peak in September and lowest in December, January and February
 Casual rides are highest on weekends- Saturday and Sunday with the highest average ride lengths
 Member rides are lowest on weekends
