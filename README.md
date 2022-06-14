@@ -607,18 +607,17 @@ Link to the Interactive Tableau Dashboard
 
 * The average ride length for casual rides is 27 minutes, while average ride length for annual member rides is 13 minutes
 * The average ride length of casual riders is at its highest in the weekend, while the average ride length of annual members is constant throughout the week
-* The number of casual rides is highest in the weekend, while the number of member rides is higher on weekdays
-* No. of casual rides are highest in June, July and August with its peak in July and lowest in December, January and February
-No. of member rides are highest in July, August and September with its peak in September and lowest in December, January and February
-Casual rides are highest on weekends- Saturday and Sunday with the highest average ride lengths
-Member rides are lowest on weekends
-Both casual and member rides peak in the afternoon time ie. 12PM to 5PM
-
-The top 5 ride starting and ending stations for casual users are- Streeter Dr & Grand Ave, Millennium Park, Michigan Ave & Oak St, Shedd Aquarium and Theater on the Lake
+* The number of casual rides is at its highest in the weekend, while the number of member rides is higher on weekdays
+* The total number of member rides is higher than the total number of casual rides
+* Docked bikes are used only by members
+* The number of casual rides is at its highest in the summer (June, July and August, with its peak in July) and lowest in December, January and February
+* The number of member is at its highest in July, August and September, with its peak in September, and lowest in December, January and February
+* In the morning the number of casual rides is much lower than the number of member rides
+* The top 5 starting and ending stations for casual users are Streeter Dr & Grand Ave, Millennium Park, Michigan Ave & Oak St, Shedd Aquarium and Theater on the Lake, while the top 5 starting and ending stations for annual members are Clark St & Elm St, Wells St & Concord LN, Kingsbury St & ELm St, Dearborn St & Erie St
 
 ### Recommendations
 
-To attract the maximum number of Casual riders, promotion with subscription offers shall be done during the months of June, July and August  
+To attract the maximum number of **casual** riders, promotion with subscription offers shall be done during the months of June, July and August  
 
 Subscription booth shall be set up on the top 5 docking stations for Casual riders during afternoon time ie. 12PM-5PM on weekends to give away “Weekend discounts” to membership subscriptions, leveraging the heavy weekend traffic
 
