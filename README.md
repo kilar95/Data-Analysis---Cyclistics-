@@ -617,11 +617,10 @@ Link to the Interactive Tableau Dashboard
 
 ### Recommendations
 
-To attract the maximum number of **casual** riders, promotion with subscription offers shall be done during the months of June, July and August  
-
-Subscription booth shall be set up on the top 5 docking stations for Casual riders during afternoon time ie. 12PM-5PM on weekends to give away “Weekend discounts” to membership subscriptions, leveraging the heavy weekend traffic
-
-Marketing strategies should emphasize on “more number of trips and shorter trip lengths” for casual riders
+* Advertise the annual membership to casual riders on specific times of the year, such as the end of the week, specially on Saturdays and Sundays, and in the months or days before the summer season, where the peak of casual rides is at its highest. 
+* To attract the maximum number of **casual** riders, promotion with subscription offers should be made during the summer, specifically in June, July and August.
+* It could be helpful to collect data on where riders live in order to know whether tourists make up a large portion of casual riders, and thus if there are shorter membership options that would interest tourists without an annual commitment.
+* Collect data on why members take shorter trips and casual riders take longer trips.
 
 
 
